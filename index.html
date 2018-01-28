@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TERA iLvl Calc</title>
+	<style type="text/css">
+		body {
+			background: #010202;
+			color: #FFF;
+		}
+
+		main {
+			width: 416px;
+			height: 312px;
+			background: url("bg.png") top center;
+			background-repeat: no-repeat;
+			font-family: sans-serif;
+			font-size: 12px;	
+		}
+
+		#ilvl {
+			position: absolute;
+			top: 303px;
+			left: 32px;
+			color: #217efb;
+		}
+
+		input[type="text"] {
+			position: absolute;
+			background: none;
+			color: #FFF;
+			border: none;
+			width: 45px;
+			text-align: center;
+		}
+
+		#earone {
+			top: 28px;
+			left: 61px;
+		}
+
+		#tiara {
+			top: 28px;
+			left: 132px;
+		}
+
+		#eartwo {
+			top: 28px;
+			left: 322px;
+		}
+
+		#ringone {
+			top: 258px;
+			left: 61px;
+		}
+
+		#ringtwo {
+			top: 258px;
+			left: 322px;
+		}
+
+		#necklace {
+			top: 92px;
+			left: 152px;
+		}
+
+		#brooch {
+			top: 92px;
+			left: 231px;
+		}
+
+		#weapon {
+			top: 103px;
+			left: 71px;
+		}
+
+		#armor {
+			top: 103px;
+			left: 313px;
+		}
+
+		#boots {
+			top: 180px;
+			left: 71px;
+		}
+
+		#gloves {
+			top: 180px;
+			left: 313px;
+		}
+
+		#innerwear {
+			top: 157px;
+			left: 191px;
+		}
+
+		#belt {
+			left: 191px;
+			top: 222px;
+		}
+
+	</style>
+</head>
+<body>
+
+<main>
+<input type="text" id="earone" value="333" maxlength="3" onkeypress="return nums(event);"/>
+<input type="text" id="tiara" value="81" maxlength="3" onkeypress="return nums(event);"/>
+<input type="text" id="eartwo" value="333" maxlength="3" onkeypress="return nums(event);"/>
+
+<input type="text" id="weapon" value="429" maxlength="3" onkeypress="return nums(event);"/>
+<input type="text" id="necklace" value="333" maxlength="3" onkeypress="return nums(event);"/>
+<input type="text" id="brooch" value="317" maxlength="3" onkeypress="return nums(event);"/>
+<input type="text" id="armor" value="413" maxlength="3" onkeypress="return nums(event);"/>
+
+<input type="text" id="boots" value="409" maxlength="3" onkeypress="return nums(event);"/>
+<input type="text" id="innerwear" value="293" maxlength="3" onkeypress="return nums(event);"/>
+<input type="text" id="gloves" value="409" maxlength="3" onkeypress="return nums(event);"/>
+
+<input type="text" id="ringone" value="333" maxlength="3" onkeypress="return nums(event);"/>
+<input type="text" id="belt" value="373" maxlength="3" onkeypress="return nums(event);"/>
+<input type="text" id="ringtwo" value="333" maxlength="3" onkeypress="return nums(event);"/>
+<span id="ilvl">0</span>
+</main>
+
+
+<script type="text/javascript">
+	/*
+		Top fucking kek.
+	*/
+	function floorCont(num) {
+		var s = String(num);
+		var dec = s.indexOf(".");
+		return parseFloat(s.substr(0, dec) + "." + s.substr(dec + 1, 4));
+	}
+
+	function calc() {
+		var earOne = floorCont(parseInt(document.getElementById("earone").value || 0) * 0.02963);
+		var earTwo = floorCont(parseInt(document.getElementById("eartwo").value || 0) * 0.02963);
+		var ringOne = floorCont(parseInt(document.getElementById("ringone").value || 0) * 0.02963);
+		var ringTwo = floorCont(parseInt(document.getElementById("ringtwo").value || 0) * 0.02963);
+		var necklace = floorCont(parseInt(document.getElementById("necklace").value || 0) * 0.02963);
+		var tiara = floorCont(parseInt(document.getElementById("tiara").value || 0) * 0.02963);
+		var brooch = floorCont(parseInt(document.getElementById("brooch").value || 0) * 0.02963);
+		var belt = floorCont(parseInt(document.getElementById("belt").value || 0) * 0.02963);
+		
+		var weapon = floorCont(parseInt(document.getElementById("weapon").value || 0) * 0.2745);
+
+		var armor = floorCont(parseInt(document.getElementById("armor").value || 0) * 0.2073);
+
+		var boots = floorCont(parseInt(document.getElementById("boots").value || 0) * 0.185);
+		var gloves = floorCont(parseInt(document.getElementById("gloves").value || 0) * 0.185);
+
+		var innerwear = floorCont(parseInt(document.getElementById("innerwear").value || 0) * 0.014815);
+
+		var total = Math.floor(earOne + earTwo + ringOne + ringTwo + necklace + tiara + brooch + belt + weapon + armor + boots + gloves + innerwear);
+		document.getElementById("ilvl").innerHTML = total;
+	}
+
+	function nums(event) {
+		if((event.charCode >= 48 && event.charCode <= 57) || event.charCode == 0) {
+			setTimeout(calc, 10);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	calc();
+</script>
+</body>
+</html>
